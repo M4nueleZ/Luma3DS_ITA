@@ -1,3 +1,7 @@
+# ![Luma3DS](https://github.com/M4nueleZ/Luma3DS_ITA/blob/master/luma3dslogoita.png)
+# Traduzione Italiana
+Questa è l'edizione italiana di Luma3DS, un noob-proof custom firmware per console della famiglia Nintendo 3DS. Attualmente sono stati tradotti il menu di configurazione, il Rosalina Menu, errdisp, varie informazioni su certi errori e altri testi principali. La traduzione è stata scritta da M4nueleZ, a seguito è possibile trovare il file README originale con i crediti ai rispettivi autori del programma.
+
 # Luma3DS
 *Noob-proof (N)3DS "Custom Firmware"*
 
