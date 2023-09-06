@@ -139,19 +139,19 @@ static void ScreenFiltersMenu_SetCct(u16 cct)
 }
 
 Menu screenFiltersMenu = {
-    "Screen filters menu",
+    "Menu filtri schermo",
     {
-        { "[6500K] Default temperature", METHOD, .method = &ScreenFiltersMenu_SetDefault },
-        { "[10000K] Aquarium", METHOD, .method = &ScreenFiltersMenu_SetAquarium },
-        { "[7500K] Overcast Sky", METHOD, .method = &ScreenFiltersMenu_SetOvercastSky },
-        { "[5500K] Daylight", METHOD, .method = &ScreenFiltersMenu_SetDaylight },
-        { "[4200K] Fluorescent", METHOD, .method = &ScreenFiltersMenu_SetFluorescent },
-        { "[3400K] Halogen", METHOD, .method = &ScreenFiltersMenu_SetHalogen },
+        { "[6500K] Temperatura predefinita", METHOD, .method = &ScreenFiltersMenu_SetDefault },
+        { "[10000K] Acquario", METHOD, .method = &ScreenFiltersMenu_SetAquarium },
+        { "[7500K] Cielo coperto", METHOD, .method = &ScreenFiltersMenu_SetOvercastSky },
+        { "[5500K] Luce del giorno", METHOD, .method = &ScreenFiltersMenu_SetDaylight },
+        { "[4200K] Fluorescente", METHOD, .method = &ScreenFiltersMenu_SetFluorescent },
+        { "[3400K] Alogeno", METHOD, .method = &ScreenFiltersMenu_SetHalogen },
         { "[2700K] Incandescent", METHOD, .method = &ScreenFiltersMenu_SetIncandescent },
-        { "[2300K] Warm Incandescent", METHOD, .method = &ScreenFiltersMenu_SetWarmIncandescent },
-        { "[1900K] Candle", METHOD, .method = &ScreenFiltersMenu_SetCandle },
-        { "[1200K] Ember", METHOD, .method = &ScreenFiltersMenu_SetEmber },
-        { "Advanced configuration", METHOD, .method = &ScreenFiltersMenu_AdvancedConfiguration },
+        { "[2300K] Caldo incandescente", METHOD, .method = &ScreenFiltersMenu_SetWarmIncandescent },
+        { "[1900K] Candela", METHOD, .method = &ScreenFiltersMenu_SetCandle },
+        { "[1200K] Brace", METHOD, .method = &ScreenFiltersMenu_SetEmber },
+        { "Configurazione avanzata", METHOD, .method = &ScreenFiltersMenu_AdvancedConfiguration },
         {},
     }
 };
@@ -303,7 +303,7 @@ static u32 ScreenFiltersMenu_AdvancedConfigurationHelper(const ScreenFilter *fil
     char buf[64];
 
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
-    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Temperature: %12dK    \n", filter->cct);
+    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Temperatura: %12dK    \n", filter->cct);
 
     floatToString(buf, filter->gamma, 2, true);
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
@@ -311,14 +311,14 @@ static u32 ScreenFiltersMenu_AdvancedConfigurationHelper(const ScreenFilter *fil
 
     floatToString(buf, filter->contrast, 2, true);
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
-    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Contrast:    %13s    \n", buf);
+    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Contrasto:    %13s    \n", buf);
 
     floatToString(buf, filter->brightness, 2, true);
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
-    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Brightness:  %13s    \n", buf);
+    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Luminosita:  %13s    \n", buf);
 
     Draw_DrawCharacter(10, posY, COLOR_TITLE, pos == offset++ ? '>' : ' ');
-    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Invert:      %13s    \n", filter->invert ? "true" : "false");
+    posY = Draw_DrawFormattedString(30, posY, COLOR_WHITE, "Inverti:      %13s    \n", filter->invert ? "vero" : "falso");
 
     return posY;
 }
@@ -337,17 +337,17 @@ void ScreenFiltersMenu_AdvancedConfiguration(void)
     do
     {
         Draw_Lock();
-        Draw_DrawString(10, 10, COLOR_TITLE, "Screen filters menu");
+        Draw_DrawString(10, 10, COLOR_TITLE, "Menu filtri schermo");
 
         posY = 30;
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Use left/right to increase/decrease the sel. value.\n");
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Hold R to change the value faster.\n");
-        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Update both screens: %s (L to toggle)   \n", sync ? "yes" : "no") + SPACING_Y;
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Usare sinistra/destra per aumentare/diminuire il valore sel.\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Tieni premuto R per modificare il valore velocemente.\n");
+        posY = Draw_DrawFormattedString(10, posY, COLOR_WHITE, "Aggiorna entrambi gli schermi: %s (L per (dis)attivare)   \n", sync ? "si" : "no") + SPACING_Y;
 
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Top screen:\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Schermo superiore:\n");
         posY = ScreenFiltersMenu_AdvancedConfigurationHelper(&topScreenFilter, 0, pos, posY) + SPACING_Y;
 
-        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Bottom screen:\n");
+        posY = Draw_DrawString(10, posY, COLOR_WHITE, "Schermo inferiore:\n");
         posY = ScreenFiltersMenu_AdvancedConfigurationHelper(&bottomScreenFilter, 5, pos, posY) + SPACING_Y;
 
         input = waitInputWithTimeoutEx(&held, -1);

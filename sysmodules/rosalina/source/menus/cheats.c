@@ -2049,11 +2049,11 @@ void RosalinaMenu_Cheats(void)
             Draw_DrawString(10, 10, COLOR_TITLE, "Cheats");
             if (titleId == 0)
             {
-                Draw_DrawString(10, 30, COLOR_WHITE, "No suitable title found");
+                Draw_DrawString(10, 30, COLOR_WHITE, "Nessun titolo adeguato trovato");
             }
             else
             {
-                Draw_DrawFormattedString(10, 30, COLOR_WHITE, "No cheats found for title %016llX", titleId);
+                Draw_DrawFormattedString(10, 30, COLOR_WHITE, "Nessun cheat trovato per %016llX", titleId);
             }
 
             Draw_FlushFramebuffer();
@@ -2074,7 +2074,7 @@ void RosalinaMenu_Cheats(void)
             }
             if (R_SUCCEEDED(r))
             {
-                Draw_DrawFormattedString(10, 10, COLOR_TITLE, "Cheat list");
+                Draw_DrawFormattedString(10, 10, COLOR_TITLE, "Lista cheat");
 
                 for (s32 i = 0; i < CHEATS_PER_MENU_PAGE && page * CHEATS_PER_MENU_PAGE + i < cheatCount; i++)
                 {

@@ -35,7 +35,7 @@ static char clkRateBuf[128 + 1];
 Menu N3DSMenu = {
     "New 3DS menu",
     {
-        { "Enable L2 cache", METHOD, .method = &N3DSMenu_EnableDisableL2Cache },
+        { "Abilita cache L2", METHOD, .method = &N3DSMenu_EnableDisableL2Cache },
         { clkRateBuf, METHOD, .method = &N3DSMenu_ChangeClockRate },
         {},
     }
@@ -49,8 +49,8 @@ void N3DSMenu_UpdateStatus(void)
     svcGetSystemInfo(&higherClkRate, 0x10001, 1);
     svcGetSystemInfo(&L2CacheEnabled, 0x10001, 2);
 
-    N3DSMenu.items[0].title = L2CacheEnabled ? "Disable L2 cache" : "Enable L2 cache";
-    sprintf(clkRateBuf, "Set clock rate to %luMHz", clkRate != 268 ? 268 : (u32)higherClkRate);
+    N3DSMenu.items[0].title = L2CacheEnabled ? "Disabilita cache L2" : "Abilita cache L2";
+    sprintf(clkRateBuf, "Imposta frequenza clock a %luMHz", clkRate != 268 ? 268 : (u32)higherClkRate);
 }
 
 void N3DSMenu_ChangeClockRate(void)
